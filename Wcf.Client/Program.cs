@@ -17,8 +17,8 @@ namespace Wcf.Client
             var callBack = new InstanceContext(new MessageServiceDuplexCallback());
             var binding = new NetTcpBinding(SecurityMode.None);
             var endPoint = new EndpointAddress(address);    
-            var channel = new DuplexChannelFactory<IMessageServiceDuplex>(callBack,binding);
-            var proxy = channel.CreateChannel(endPoint);
+            var channelFactory = new DuplexChannelFactory<IMessageServiceDuplex>(callBack,binding);
+            var proxy = channelFactory.CreateChannel(endPoint);
             
             proxy?.Connect();
 
